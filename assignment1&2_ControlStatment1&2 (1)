@@ -1,0 +1,335 @@
+Assignment 1 == Control Statment
+*******************************************************************************************************************************************************
+1.Write a Scala program to check if a given number is positive, negative, or
+zero using if/else statements.
+
+object NumberCheck {
+  def main(args: Array[String]): Unit = {
+    // Change this number to test different cases
+    val number = -10
+
+    if (number > 0) {
+      println(s"The number $number is positive.")
+    } else if (number < 0) {
+      println(s"The number $number is negative.")
+    } else {
+      println(s"The number $number is zero.")
+    }
+  }
+}
+
+output::
+
+(base) [fymsc12@client10 scala practicals]$ scalac NumberCheck.scala
+(base) [fymsc12@client10 scala practicals]$ scala NumberCheck
+The number -10 is negative.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Write a Scala program to find the second maximum of four given numbers using if/else statements.
+
+object SecondMaximum {
+  def main(args: Array[String]): Unit = {
+    val a = 45
+    val b = 23
+    val c = 78
+    val d = 67
+
+    var max1 = a
+    var max2 = a
+
+    if (b > max1) {
+      max2 = max1
+      max1 = b
+    } else if (b > max2) {
+      max2 = b
+    }
+
+    if (c > max1) {
+      max2 = max1
+      max1 = c
+    } else if (c > max2) {
+      max2 = c
+    }
+
+    if (d > max1) {
+      max2 = max1
+      max1 = d
+    } else if (d > max2) {
+      max2 = d
+    }
+
+    println(s"The second maximum number is $max2.")
+  }
+}
+
+
+output::
+(base) [fymsc12@client10 scala practicals]$ scalac SecondMaximum.scala
+(base) [fymsc12@client10 scala practicals]$ scala SecondMaximum
+The second maximum number is 67.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Write a Scala program to find the factorial of a given number using a while loop.
+
+object Factorial {
+  def main(args: Array[String]): Unit = {
+    val number = 5
+    var factorial = 1
+    var i = number
+
+    while (i > 0) {
+      factorial *= i
+      i -= 1
+    }
+
+    println(s"The factorial of $number is $factorial.")
+  }
+}
+
+
+output::
+(base) [fymsc12@client10 scala practicals]$ scalac Factorial.scala
+(base) [fymsc12@client10 scala practicals]$ scala Factorial
+The factorial of 5 is 120.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Write a program to calculate the average of all numbers between n1 and n2 (e.g.100 to 300. Read values of n1 and n2 from user)
+
+import scala.io.StdIn.readInt
+
+object AverageBetweenNumbers {
+  def main(args: Array[String]): Unit = {
+    print("Enter the value of n1: ")
+    val n1 = readInt()
+
+    print("Enter the value of n2: ")
+    val n2 = readInt()
+
+    val (start, end) = if (n1 <= n2) (n1, n2) else (n2, n1)
+
+    var sum = 0
+    var count = 0
+
+    for (i <- start to end) {
+      sum += i
+      count += 1
+    }
+
+    val average = sum.toDouble / count
+
+    println(s"The average of all numbers between $start and $end is $average.")
+  }
+}
+
+
+output::
+
+(base) [fymsc12@client10 scala practicals]$ scalac AverageBetweenNumbers.scala
+(base) [fymsc12@client10 scala practicals]$ scala AverageBetweenNumbers
+Enter the value of n1: 2
+Enter the value of n2: 5
+The average of all numbers between 2 and 5 is 3.5.
+
+*******************************************************************************************************************************************************
+Assignment 2 == Control Statment 2
+_______________________________________________________________________________________________________________________________________________________
+
+1. Write a program to read five random numbers and check whether numbers are perfect or not.
+
+import scala.util.Random
+
+object PerfectNumberCheckSimple {
+  def main(args: Array[String]): Unit = {
+   
+    val randomNumbers = Array.fill(5)(Random.nextInt(100) + 1)
+
+   
+    def isPerfectNumber(n: Int): Boolean = {
+      var sum = 0
+      for (i <- 1 until n) {
+        if (n % i == 0) {
+          sum += i
+        }
+      }
+      sum == n
+    }
+
+    
+    for (number <- randomNumbers) {
+      if (isPerfectNumber(number)) {
+        println(s"The number $number is a perfect number.")
+      } else {
+        println(s"The number $number is not a perfect number.")
+      }
+    }
+  }
+}
+
+
+output::
+(base) [fymsc12@client10 scala practicals]$ scalac PerfectNumberCheckSimple.scala
+(base) [fymsc12@client10 scala practicals]$ scala PerfectNumberCheckSimple
+The number 24 is not a perfect number.
+The number 54 is not a perfect number.
+The number 55 is not a perfect number.
+The number 6 is a perfect number.
+The number 12 is not a perfect number.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Write the program to calculate the sum of prime numbers between 1 to 100.
+
+object SumOfPrimes {
+  def main(args: Array[String]): Unit = {
+    def isPrime(n: Int): Boolean = {
+      if (n <= 1) {
+        false
+      } else {
+        for (i <- 2 until n) {
+          if (n % i == 0) return false
+        }
+        true
+      }
+    }
+
+    var sum = 0
+    for (i <- 2 to 100) {
+      if (isPrime(i)) {
+        sum += i
+      }
+    }
+
+    println(s"The sum of prime numbers between 1 and 100 is $sum.")
+  }
+}
+
+
+output::
+
+(base) [fymsc12@client10 scala practicals]$ scalac SumOfPrimes.scala
+(base) [fymsc12@client10 scala practicals]$ scala SumOfPrimes
+The sum of prime numbers between 1 and 100 is 1060.
+							
+                                   ****************************************************************************
+									OR
+
+import scala.io.StdIn.readInt
+
+object SumOfPrimesInRange {
+  def main(args: Array[String]): Unit = {
+    // Read the start and end of the range from the user
+    print("Enter the start of the range: ")
+    val start = readInt()
+
+    print("Enter the end of the range: ")
+    val end = readInt()
+
+    // Function to check if a number is prime
+    def isPrime(n: Int): Boolean = {
+      if (n <= 1) {
+        false
+      } else {
+        for (i <- 2 until n) {
+          if (n % i == 0) return false
+        }
+        true
+      }
+    }
+
+    // Calculate the sum of prime numbers in the given range
+    var sum = 0
+    for (i <- start to end) {
+      if (isPrime(i)) {
+        sum += i
+      }
+    }
+
+    println(s"The sum of prime numbers between $start and $end is $sum.")
+  }
+}
+
+output::
+
+(base) [fymsc12@client10 scala practicals]$ scalac SumOfPrimesInRange.scala
+(base) [fymsc12@client10 scala practicals]$ scala SumOfPrimesInRange
+Enter the start of the range: 3
+Enter the end of the range: 67
+The sum of prime numbers between 3 and 67 is 566.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Write a program to read an integer from a user and convert it to binary and octal using user defined functions.
+
+import scala.io.StdIn.readInt
+
+object NumberConversion {
+  def main(args: Array[String]): Unit = {
+    print("Enter an integer: ")
+    val number = readInt()
+
+    val binary = toBinary(number)
+    val octal = toOctal(number)
+
+    println(s"The binary representation of $number is $binary.")
+    println(s"The octal representation of $number is $octal.")
+  }
+
+  def toBinary(n: Int): String = {
+    Integer.toBinaryString(n)
+  }
+
+  def toOctal(n: Int): String = {
+    Integer.toOctalString(n)
+  }
+}
+
+
+output::
+
+(base) [fymsc12@client10 Control Structure]$ scalac NumberConversion.scala
+(base) [fymsc12@client10 Control Structure]$ scala NumberConversion
+Enter an integer: 45
+The binary representation of 45 is 101101.
+The octal representation of 45 is 55.
+(base) [fymsc12@client10 Control Structure]$ scala NumberConversion
+Enter an integer: 2
+The binary representation of 2 is 10.
+The octal representation of 2 is 2.
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Write a Scala print the Fibonacci series up to a given number using a user defined function.
+
+import scala.io.StdIn.readInt
+
+object FibonacciSeries {
+  def main(args: Array[String]): Unit = {
+    print("Enter the limit for the Fibonacci series: ")
+    val limit = readInt()
+
+    print(s"Fibonacci series up to $limit: ")
+    fibonacciSeries(limit)
+  }
+
+  def fibonacciSeries(limit: Int): Unit = {
+    var a = 0
+    var b = 1
+
+    while (a <= limit) {
+      print(s"$a ")
+      val next = a + b
+      a = b
+      b = next
+    }
+    println()
+  }
+}
+
+
+outputs::
+(base) [fymsc12@client10 Control Structure]$ scalac FibonacciSeries.scala
+(base) [fymsc12@client10 Control Structure]$ scala FibonacciSeries
+Enter the limit for the Fibonacci series: 20
+Fibonacci series up to 20: 0 1 1 2 3 5 8 13 
+(base) [fymsc12@client10 Control Structure]$ scala FibonacciSeries
+Enter the limit for the Fibonacci series: 2
+Fibonacci series up to 2: 0 1 1 2 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+

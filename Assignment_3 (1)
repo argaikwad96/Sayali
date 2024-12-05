@@ -1,0 +1,302 @@
+mongo 192.168.100.203 -u msc12 -p msc12 --authenticationDatabase mscdb12
+> use mscdb12
+switched to db mscdb12
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+> db.Employee.find().pretty()
+{
+	"_id" : ObjectId("66d00c8d98bb57efbfe0c94d"),
+	"EmployeeID" : 1,
+	"FirstName" : "John",
+	"LastName" : "Doe",
+	"Email" : "john.doe@example.com",
+	"PhoneNo" : "123-456-7890",
+	"Address" : {
+		"HouseNo" : "23",
+		"Street" : "Sangamwadi",
+		"City" : "Pune",
+		"State" : "Maharastra",
+		"Country" : "India",
+		"PinCode" : "422608"
+	},
+	"Salary" : 54000,
+	"Designation" : "Developer",
+	"Experience" : 5,
+	"DateOfJoining" : ISODate("2019-06-01T00:00:00Z"),
+	"Birthdate" : ISODate("1985-01-15T00:00:00Z")
+}
+{
+	"_id" : ObjectId("66d00d0f98bb57efbfe0c94e"),
+	"EmployeeID" : 2,
+	"FirstName" : "Prerna",
+	"LastName" : "Devbhat",
+	"Email" : "prerna.d@gmail.com",
+	"PhoneNo" : "123-456-8790",
+	"Address" : {
+		"HouseNo" : "321",
+		"Street" : "Main St",
+		"City" : "Springworld",
+		"State" : "London",
+		"Country" : "USA",
+		"PinCode" : "62707"
+	},
+	"Salary" : 84000,
+	"Designation" : "Developer consultant",
+	"Experience" : 7,
+	"DateOfJoining" : ISODate("2020-07-01T00:00:00Z"),
+	"Birthdate" : ISODate("1981-08-15T00:00:00Z")
+}
+{
+	"_id" : ObjectId("66d00d3098bb57efbfe0c94f"),
+	"EmployeeID" : 3,
+	"FirstName" : "Pratiksha",
+	"LastName" : "Titekar",
+	"Email" : "t.pratiksha@gmail.com",
+	"PhoneNo" : "321-456-8790",
+	"Address" : {
+		"HouseNo" : "456",
+		"Street" : "Main street",
+		"City" : "Gujarat",
+		"State" : "Maharastra",
+		"Country" : "India",
+		"PinCode" : "421105"
+	},
+	"Salary" : 94000,
+	"Designation" : "Supervisor",
+	"Experience" : 7,
+	"DateOfJoining" : ISODate("2022-07-01T00:00:00Z"),
+	"Birthdate" : ISODate("2001-08-15T00:00:00Z")
+}
+{
+	"_id" : ObjectId("66d00d6e98bb57efbfe0c950"),
+	"EmployeeID" : 4,
+	"FirstName" : "Sakshi",
+	"LastName" : "Naykude",
+	"Email" : "k.sakshi@gmail.com",
+	"PhoneNo" : "123-654-8790",
+	"Address" : {
+		"HouseNo" : "753",
+		"Street" : "Sanjeevan",
+		"City" : "SpringCity",
+		"State" : "London",
+		"Country" : "USA",
+		"PinCode" : "62705"
+	},
+	"Salary" : 44000,
+	"Designation" : "Consultant",
+	"Experience" : 5,
+	"DateOfJoining" : ISODate("2020-07-01T00:00:00Z"),
+	"Birthdate" : ISODate("1981-08-15T00:00:00Z")
+}
+{
+	"_id" : ObjectId("66d00d9298bb57efbfe0c951"),
+	"EmployeeID" : 5,
+	"FirstName" : "sayali",
+	"LastName" : "Salve",
+	"Email" : "Salave.sayli@gmail.com",
+	"PhoneNo" : "123-654-8790",
+	"Address" : {
+		"HouseNo" : "789",
+		"Street" : "dhole patil",
+		"City" : "pune",
+		"State" : "Maharastra",
+		"Country" : "India",
+		"PinCode" : "41120"
+	},
+	"Salary" : 64000,
+	"Designation" : "Supervisor",
+	"Experience" : 6,
+	"DateOfJoining" : ISODate("2021-05-03T00:00:00Z"),
+	"Birthdate" : ISODate("2000-04-12T00:00:00Z")
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+> db.Employee.insertOne({EmployeeID:7,FirstName: "Jane",LastName: "Smith",Email: "jane.smith@example.com",PhoneNo: "987-654-3210",Address: {HouseNo: "456",Street: "Broadway",City: "New York",State: "NY",Country: "USA",PinCode: "10001"},Salary: 50000,Designation: "floor supervisor",Experience: 8,DateOfJoining: new Date("2017-08-01"),Birthdate: new Date("1990-06-25")})
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("66d68801a00452b8bb313b14")
+}
+
+
+> db.Employee.insertOne({EmployeeID: 8,FirstName: "Karen",LastName: "Williams",Email: "karen.williams@example.com",PhoneNo: "654-321-0987",Address: {HouseNo: "202",Street: "Oak St",City: "San Francisco",State: "CA",Country: "USA",PinCode: "94101"},Salary: 62000,Designation: "floor supervisor",Experience: 9,DateOfJoining: new Date("2014-09-10"),Birthdate: new Date("1983-07-22")})
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("66d688a6a00452b8bb313b15")
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+> db.Employee.find().pretty()
+*******************************************************************************************************************************************************
+1. Find employees having designation as either ‘manager’ or ‘floor supervisor’.
+
+> db.Employee.find({ Designation: { $in: ["manager", "floor supervisor"] } })
+
+{ "_id" : ObjectId("66d68801a00452b8bb313b14"), "EmployeeID" : 7, "FirstName" : "Jane", "LastName" : "Smith", "Email" : "jane.smith@example.com", "PhoneNo" : "987-654-3210", "Address" : { "HouseNo" : "456", "Street" : "Broadway", "City" : "New York", "State" : "NY", "Country" : "USA", "PinCode" : "10001" }, "Salary" : 50000, "Designation" : "floor supervisor", "Experience" : 8, "DateOfJoining" : ISODate("2017-08-01T00:00:00Z"), "Birthdate" : ISODate("1990-06-25T00:00:00Z") }
+{ "_id" : ObjectId("66d688a6a00452b8bb313b15"), "EmployeeID" : 8, "FirstName" : "Karen", "LastName" : "Williams", "Email" : "karen.williams@example.com", "PhoneNo" : "654-321-0987", "Address" : { "HouseNo" : "202", "Street" : "Oak St", "City" : "San Francisco", "State" : "CA", "Country" : "USA", "PinCode" : "94101" }, "Salary" : 62000, "Designation" : "floor supervisor", "Experience" : 9, "DateOfJoining" : ISODate("2014-09-10T00:00:00Z"), "Birthdate" : ISODate("1983-07-22T00:00:00Z") }
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Find an employee whose name ends with "_________" and print the
+output in json format.
+
+> db.Employee.findOne({ FirstName: { $regex: "John$" } })
+{
+	"_id" : ObjectId("66d00c8d98bb57efbfe0c94d"),
+	"EmployeeID" : 1,
+	"FirstName" : "John",
+	"LastName" : "Doe",
+	"Email" : "john.doe@example.com",
+	"PhoneNo" : "123-456-7890",
+	"Address" : {
+		"HouseNo" : "23",
+		"Street" : "Sangamwadi",
+		"City" : "Pune",
+		"State" : "Maharastra",
+		"Country" : "India",
+		"PinCode" : "422608"
+	},
+	"Salary" : 54000,
+	"Designation" : "Developer",
+	"Experience" : 5,
+	"DateOfJoining" : ISODate("2019-06-01T00:00:00Z"),
+	"Birthdate" : ISODate("1985-01-15T00:00:00Z")
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Display the name of an employee whose salary is greater than _______ using a
+MongoDB cursor.
+
+> var cursor = db.Employee.find({ Salary: { $gt: 50000 } }, { FirstName: 1, LastName: 1, _id: 0 })
+> while (cursor.hasNext()) {
+...    printjson(cursor.next())
+... }
+{ "FirstName" : "John", "LastName" : "Doe" }
+{ "FirstName" : "Prerna", "LastName" : "Devbhat" }
+{ "FirstName" : "Pratiksha", "LastName" : "Titekar" }
+{ "FirstName" : "sayali", "LastName" : "Salve" }
+{ "FirstName" : "Sayali", "LastName" : "Parab" }
+{ "FirstName" : "Karen", "LastName" : "Williams" }
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Sort the employees in the descending order of their designation.
+
+> db.Employee.find().sort({ Designation: -1 })
+{ "_id" : ObjectId("66d68801a00452b8bb313b14"), "EmployeeID" : 7, "FirstName" : "Jane", "LastName" : "Smith", "Email" : "jane.smith@example.com", "PhoneNo" : "987-654-3210", "Address" : { "HouseNo" : "456", "Street" : "Broadway", "City" : "New York", "State" : "NY", "Country" : "USA", "PinCode" : "10001" }, "Salary" : 50000, "Designation" : "floor supervisor", "Experience" : 8, "DateOfJoining" : ISODate("2017-08-01T00:00:00Z"), "Birthdate" : ISODate("1990-06-25T00:00:00Z") }
+{ "_id" : ObjectId("66d688a6a00452b8bb313b15"), "EmployeeID" : 8, "FirstName" : "Karen", "LastName" : "Williams", "Email" : "karen.williams@example.com", "PhoneNo" : "654-321-0987", "Address" : { "HouseNo" : "202", "Street" : "Oak St", "City" : "San Francisco", "State" : "CA", "Country" : "USA", "PinCode" : "94101" }, "Salary" : 62000, "Designation" : "floor supervisor", "Experience" : 9, "DateOfJoining" : ISODate("2014-09-10T00:00:00Z"), "Birthdate" : ISODate("1983-07-22T00:00:00Z") }
+{ "_id" : ObjectId("66d00d3098bb57efbfe0c94f"), "EmployeeID" : 3, "FirstName" : "Pratiksha", "LastName" : "Titekar", "Email" : "t.pratiksha@gmail.com", "PhoneNo" : "321-456-8790", "Address" : { "HouseNo" : "456", "Street" : "Main street", "City" : "Gujarat", "State" : "Maharastra", "Country" : "India", "PinCode" : "421105" }, "Salary" : 94000, "Designation" : "Supervisor", "Experience" : 7, "DateOfJoining" : ISODate("2022-07-01T00:00:00Z"), "Birthdate" : ISODate("2001-08-15T00:00:00Z") }
+{ "_id" : ObjectId("66d00d9298bb57efbfe0c951"), "EmployeeID" : 5, "FirstName" : "sayali", "LastName" : "Salve", "Email" : "Salave.sayli@gmail.com", "PhoneNo" : "123-654-8790", "Address" : { "HouseNo" : "789", "Street" : "dhole patil", "City" : "pune", "State" : "Maharastra", "Country" : "India", "PinCode" : "41120" }, "Salary" : 64000, "Designation" : "Supervisor", "Experience" : 6, "DateOfJoining" : ISODate("2021-05-03T00:00:00Z"), "Birthdate" : ISODate("2000-04-12T00:00:00Z") }
+{ "_id" : ObjectId("66d6875da00452b8bb313b13"), "EmployeeID" : 6, "FirstName" : "Sayali", "LastName" : "Parab", "Email" : "john.doe@example.com", "PhoneNo" : "123-456-7890", "Address" : { "HouseNo" : "123", "Street" : "Main St", "City" : "Springfield", "State" : "IL", "Country" : "USA", "PinCode" : "62701" }, "Salary" : 60000, "Designation" : "Manager", "Experience" : 10, "DateOfJoining" : ISODate("2015-03-01T00:00:00Z"), "Birthdate" : ISODate("1985-01-15T00:00:00Z") }
+{ "_id" : ObjectId("66d00d0f98bb57efbfe0c94e"), "EmployeeID" : 2, "FirstName" : "Prerna", "LastName" : "Devbhat", "Email" : "prerna.d@gmail.com", "PhoneNo" : "123-456-8790", "Address" : { "HouseNo" : "321", "Street" : "Main St", "City" : "Springworld", "State" : "London", "Country" : "USA", "PinCode" : "62707" }, "Salary" : 84000, "Designation" : "Developer consultant", "Experience" : 7, "DateOfJoining" : ISODate("2020-07-01T00:00:00Z"), "Birthdate" : ISODate("1981-08-15T00:00:00Z") }
+{ "_id" : ObjectId("66d00c8d98bb57efbfe0c94d"), "EmployeeID" : 1, "FirstName" : "John", "LastName" : "Doe", "Email" : "john.doe@example.com", "PhoneNo" : "123-456-7890", "Address" : { "HouseNo" : "23", "Street" : "Sangamwadi", "City" : "Pune", "State" : "Maharastra", "Country" : "India", "PinCode" : "422608" }, "Salary" : 54000, "Designation" : "Developer", "Experience" : 5, "DateOfJoining" : ISODate("2019-06-01T00:00:00Z"), "Birthdate" : ISODate("1985-01-15T00:00:00Z") }
+{ "_id" : ObjectId("66d00d6e98bb57efbfe0c950"), "EmployeeID" : 4, "FirstName" : "Sakshi", "LastName" : "Naykude", "Email" : "k.sakshi@gmail.com", "PhoneNo" : "123-654-8790", "Address" : { "HouseNo" : "753", "Street" : "Sanjeevan", "City" : "SpringCity", "State" : "London", "Country" : "USA", "PinCode" : "62705" }, "Salary" : 44000, "Designation" : "Consultant", "Experience" : 5, "DateOfJoining" : ISODate("2020-07-01T00:00:00Z"), "Birthdate" : ISODate("1981-08-15T00:00:00Z") }
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. Count the total number of employees in a collection.
+
+> db.Employee.count()
+8
+> db.getCollectionNames()
+[ "Employee", "Film", "Film1", "Transaction", "film", "film1" ]
+> db.Employee.find({}).count()
+8
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. Calculate the sum of the total amount paid for all the transaction documents.
+
+> db.Transaction.aggregate([{ $group: { _id: null, totalAmountPaid: { $sum: "$Payment.TotalAmountPaid" } } }])
+{ "_id" : null, "totalAmountPaid" : 6210 }
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+7. Calculate the sum of the total amount paid for each payment type.
+
+
+> db.Transaction.aggregate([{ $group: { _id: "$Payment.TypeOfPayment", totalAmountPaid: { $sum: "$Payment.TotalAmountPaid" } } }])
+{ "_id" : "Cash", "totalAmountPaid" : 1110 }
+{ "_id" : "Credit", "totalAmountPaid" : 3100 }
+{ "_id" : "Debit", "totalAmountPaid" : 2000 }
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+8. Find the transaction id of the latest transaction.
+
+> db.Transaction.find().sort({ TransactionDate: -1 }).limit(1).forEach(function(doc) {
+...    print("Latest Transaction ID: " + doc.TransactionId)
+... })
+Latest Transaction ID: T010
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+9. Find designation of employees who have made transaction of amount greater than Rs. 500.
+
+> db.Transaction.aggregate([
+...   { $match: { "Payment.TotalAmountPaid": { $gt: 500 } } },
+...   {
+...     $addFields: {
+...       FirstName: { $arrayElemAt: [{ $split: ["$Name", " "] }, 0] },
+...       LastName: { $arrayElemAt: [{ $split: ["$Name", " "] }, 1] }
+...     }
+...   },
+...   {
+...     $lookup: {
+...       from: "Employee",
+...       let: { firstName: "$FirstName", lastName: "$LastName" },
+...       pipeline: [
+...         { $match: { $expr: { $and: [
+...           { $eq: ["$FirstName", "$$firstName"] },
+...           { $eq: ["$LastName", "$$lastName"] }
+...         ] } }
+...         }
+...       ],
+...       as: "employee_info"
+...     }
+...   },
+...   { $unwind: "$employee_info" },
+...   { $project: { "employee_info.Designation": 1, _id: 0 } }
+... ])
+{ "employee_info" : { "Designation" : "Developer" } }
+{ "employee_info" : { "Designation" : "Developer" } }
+{ "employee_info" : { "Designation" : "floor supervisor" } }
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+10. Find the total quantity of a particular item sold using Map Reduce.
+
+> var mapFunction = function() {
+...   emit(this.TransactionDetails.ItemName, this.TransactionDetails.Quantity);
+... };
+> 
+> var reduceFunction = function(keyItemName, valuesQuantities) {
+...   return Array.sum(valuesQuantities);
+... };
+> 
+> db.Transaction.mapReduce(
+...   mapFunction,
+...   reduceFunction,
+...   { out: "total_quantity_sold" }
+... );
+{
+	"result" : "total_quantity_sold",
+	"timeMillis" : 584,
+	"counts" : {
+		"input" : 11,
+		"emit" : 11,
+		"reduce" : 2,
+		"output" : 9
+	},
+	"ok" : 1
+}
+> 
+> // View the results
+> db.total_quantity_sold.find()
+{ "_id" : "Headphones", "value" : 5 }
+{ "_id" : "Keyboard", "value" : 3 }
+{ "_id" : "Laptop", "value" : 2 }
+{ "_id" : "Monitor", "value" : 1 }
+{ "_id" : "Mouse", "value" : 20 }
+{ "_id" : "Printer", "value" : 1 }
+{ "_id" : "Smartphone", "value" : 2 }
+{ "_id" : "USB Drive", "value" : 10 }
+{ "_id" : "Webcam", "value" : 3 }
+> 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,169 @@
+1. Write a program to count uppercase letters in a string and convert it to lowercase and display the new string.
+
+import scala.io.StdIn.readLine
+
+object UppercaseCounter {
+  def main(args: Array[String]): Unit = {
+    print("Enter a string: ")
+    val inputString = readLine()
+
+    var uppercaseCount = 0
+    var resultString = ""
+
+    for (char <- inputString) {
+      if (char.isUpper) {
+        uppercaseCount += 1
+      }
+    }
+
+    resultString = inputString.toLowerCase
+
+    println(s"Number of uppercase letters: $uppercaseCount")
+    println(s"String in lowercase: $resultString")
+  }
+}
+
+
+Output::
+
+(base) [fymsc12@client53 String]$ scalac UppercaseCounter.scala
+(base) [fymsc12@client53 String]$ scala UppercaseCounter
+Enter a string: hello world
+Number of uppercase letters: 0
+String in lowercase: hello world
+
+(base) [fymsc12@client53 String]$ scala UppercaseCounter
+Enter a string: TEJAL Prakash Hase
+Number of uppercase letters: 7
+String in lowercase: tejal prakash hase
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Write a program to read a character from the user and count the number of occurrences of that character in the given string.
+
+import scala.io.StdIn._
+
+object CharacterCounter {
+  def main(args: Array[String]): Unit = {
+    print("Enter the string: ")
+    val inputString = readLine()
+
+    print("Enter the character to count: ")
+    val charToCount = readChar()
+
+    var count = 0
+
+    for (char <- inputString) {
+      if (char == charToCount) {
+        count += 1
+      }
+    }
+
+    println(s"The character '$charToCount' occurs $count times in the string.")
+  }
+}
+
+
+output::
+
+(base) [fymsc12@client53 String]$ scalac CharacterCounter.scala
+(base) [fymsc12@client53 String]$ scala CharacterCounter
+Enter the string: Tejal Prakash Hase
+Enter the character to count: a
+The character 'a' occurs 4 times in the string.
+
+(base) [fymsc12@client53 String]$ scala CharacterCounter
+Enter the string: today is a good day
+Enter the character to count:  
+The character ' ' occurs 4 times in the string.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Write a Scala program to remove the character in a given position of a given string. Check for a given position should be in the range 0...string length -1 inclusive.
+
+import scala.io.StdIn._
+
+object RemoveCharacter {
+  def main(args: Array[String]): Unit = {
+    print("Enter the string: ")
+    val inputString = readLine()
+
+    print("Enter the position of the character to remove: ")
+    val position = readInt()
+
+    if (position >= 0 && position < inputString.length) {
+      val resultString = inputString.substring(0, position) + inputString.substring(position + 1)
+
+      println(s"String after removing character at position $position: $resultString")
+    } else {
+      println("Error: The position is out of range. Please enter a position between 0 and ${inputString.length - 1}.")
+    }
+  }
+}
+
+
+output::
+
+(base) [fymsc12@client53 String]$ scalac RemoveCharacter.scala
+(base) [fymsc12@client53 String]$ scala RemoveCharacter
+Enter the string: tejal prakash hase
+Enter the position of the character to remove: 4
+String after removing character at position 4: teja prakash hase
+
+
+(base) [fymsc12@client53 String]$ scala RemoveCharacter
+Enter the string: hello world
+Enter the position of the character to remove: 5
+String after removing character at position 5: helloworld
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Write a Scala program to check if a given string is a palindrome using if/else statements and pattern matching.
+
+import scala.io.StdIn._
+
+object PalindromeChecker {
+  def main(args: Array[String]): Unit = {
+    
+    print("Enter a string: ")
+    val inputString = readLine().trim // Read and trim any leading/trailing whitespace
+
+    // Function to check if a string is a palindrome
+    def isPalindrome(str: String): Boolean = {
+      // Use pattern matching and if/else statements
+      str match {
+        case _ if str.isEmpty => true // An empty string is considered a palindrome
+        case _ if str == str.reverse => true // Check if the string is equal to its reverse
+        case _ => false // Otherwise, it's not a palindrome
+      }
+    }
+
+    // Check if the input string is a palindrome
+    if (isPalindrome(inputString)) {
+      println(s"The string '$inputString' is a palindrome.")
+    } else {
+      println(s"The string '$inputString' is not a palindrome.")
+    }
+  }
+}
+
+
+output::
+
+(base) [fymsc12@client53 String]$ scalac PalindromeChecker.scala
+(base) [fymsc12@client53 String]$ scala PalindromeChecker
+Enter a string: hello
+The string 'hello' is not a palindrome.
+
+(base) [fymsc12@client53 String]$ scala PalindromeChecker
+Enter a string: helleh
+The string 'helleh' is a palindrome.
+
+(base) [fymsc12@client53 String]$ scala PalindromeChecker
+Enter a string: abba
+The string 'abba' is a palindrome.
+
+(base) [fymsc12@client53 String]$ scala PalindromeChecker
+Enter a string: tejal
+The string 'tejal' is not a palindrome.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------

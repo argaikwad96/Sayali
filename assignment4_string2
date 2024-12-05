@@ -1,0 +1,169 @@
+ASSIGNMENT NO. 04 -- STRING 2
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+1. Write a Scala program to check if two given strings are rotations of each
+other.
+
+import scala.io.StdIn._
+
+object Scala_String {
+
+  def checkForRotation(str1: String, str2: String): Boolean = {
+    return (str1.length == str2.length) && ((str1 + str1).indexOf(str2) != -1);
+  }
+
+  def main(args: Array[String]): Unit = {
+    val str1 = "CDABC";
+    val str2 = "CDABA";
+    println("The given strings are: " + str1 + "  and  " + str2);
+    println("\nThe concatination of 1st string twice is: " + str1 + str1
+    );
+
+    if (checkForRotation(str1, str2)) {
+      println("The 2nd string " + str2 + "  exists in the new string."
+      );
+      println("\nStrings are rotations of each other");
+    } 
+    else {
+      println("The 2nd string " + str2 + "  not exists in the new string.");
+      printf("\nStrings are not rotations of each other");
+    }
+  }
+}
+
+
+output::
+
+(base) [fymsc12@client53 String 2]$ scalac Scala_String.scala
+(base) [fymsc12@client53 String 2]$ scala Scala_String
+The given strings are: ABACD  and  CDABA
+
+The concatination of 1st string twice is: ABACDABACD
+The 2nd string CDABA  exists in the new string.
+
+Strings are rotations of each other
+(base) [fymsc12@client53 String 2]$ scalac Scala_String.scala
+(base) [fymsc12@client53 String 2]$ scala Scala_String
+The given strings are: CDABC  and  CDABA
+
+The concatination of 1st string twice is: CDABCCDABC
+The 2nd string CDABA  not exists in the new string.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Create an array of strings and read a string from the user. Display all the elements of an array containing a given string.
+
+object Q2
+{ 
+	def main(args:Array[String]) 
+	{ 
+	    val arr = new Array[String](3)
+	     println("the values of array is ")
+
+    for (i <- 0 to 2) {
+
+      arr(i) = scala.io.StdIn.readLine()
+
+    }
+
+ println("Elements in array")
+    arr.foreach(println)    
+	} 
+} 
+
+
+Output:
+
+(base) [fymsc12@client32 String 2]$ scalac Q2.scala
+(base) [fymsc12@client32 String 2]$ scala Q2
+the values of array is 
+2
+5
+4
+Elements in array
+2
+5
+4
+(base) [fymsc12@client32 String 2]$ scala Q2
+the values of array is 
+abc
+tjal
+tejal
+Elements in array
+abc
+tjal
+tejal
+(base) [fymsc12@client32 String 2]$ 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Write a Scala program to reverse every word in a given string.
+
+object ReverseWords {
+  def reverseEachWord(sentence: String): String = {
+    sentence.split(" ").map(_.reverse).mkString(" ")
+  }
+
+  def main(args: Array[String]): Unit = {
+    val input = "Scala programming is fun"
+    val result = reverseEachWord(input)
+    println(s"Original: $input")
+    println(s"Reversed: $result")
+  }
+}
+
+
+Output:
+
+(base) [fymsc12@client7 String 2]$ scalac ReverseWords.scala
+(base) [fymsc12@client7 String 2]$ scala ReverseWords
+Original: Scala programming is fun
+Reversed: alacS gnimmargorp si nuf
+(base) [fymsc12@client7 String 2]$ 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Write a Scala program to read two strings, append them together and return the result. If the length of the strings is different, remove characters from the beginning of the longer string and make them equal length.
+
+object Q4 {
+
+  def element(a: String, b: String): String = {
+    if (a.length == b.length)
+      return a + b;
+    if (a.length > b.length) {
+      var diff = a.length - b.length;
+      a.substring(diff, a.length) + b;
+    } else {
+      var diff = b.length - a.length;
+      a + b.substring(diff, b.length);
+    }
+  }
+  def main(args: Array[String]): Unit = {
+println("enter a string")
+val a = scala.io.StdIn.readLine() 
+println("enter a string2")
+val b = scala.io.StdIn.readLine() 
+   /* var str1 = "welcome";
+    var str2 = "scala programming language";
+    println("The given strings is: " + str1 + " and " + str2);
+    println("The new string is: " + element(str1, str2));
+    str1 = "Scala";
+    str2 = "Python";*/
+    println("The given strings is: " + a + " and " + b);
+    println("The new string is: " + element(a, b));
+  }
+} 
+
+
+Output:
+
+(base) [fymsc12@client32 String 2]$ scalac Q4.scala
+(base) [fymsc12@client32 String 2]$ scala Q4
+enter a string
+tejal
+enter a string2
+prerna
+The given strings is: tejal and prerna
+The new string is: tejalrerna
+(base) [fymsc12@client32 String 2]$ 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,145 @@
+mongo 192.168.100.203 -u msc12 -p msc12 --authenticationDatabase mscdb12
+use mscdb12
+db.createCollection("Film2")
+{ "ok" : 1 }
+db.Film2.insertMany([{id:1,title:"avengers",YearRelease:2014,Category:"action",actor:"john mith",director:"r.robert",place:"paris",rating:5},{id:2,title:"titanic",YearRelease:1993,Category:"action",actor:"m.cock",director:"smith.s",place:"uk",rating:5}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a87d9f64746d54c04c0bfe"),
+		ObjectId("66a87d9f64746d54c04c0bff")
+	]
+}
+
+db.Film2.insertMany([{id:3,title:"junglebook",YearRelease:2009, Category:"action", actor:"john dee", director:"g.robern", place:"mumbai", rating:5},{id:4, title:"jumanji", yearRelease:2018, Category:"sci-fi",actor:"michel",director:"john.p",place:"delhi",rating:5}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a87dd564746d54c04c0c00"),
+		ObjectId("66a87dd564746d54c04c0c01")
+	]
+}
+
+db.Film2.insertMany([{id:5,title:"war",YearRelease:2020,Category:["action", "adventure"],actor:"tiger shroff",director:"s.swami",place:"Mumbai",rating:5},{id:6,title:"main tera hero",YearRelease:2012,Category:["action", "romantic"],actor:"varun dhawan",director:"prabhudeva",place:"dubai",rating:4},{id:7,title:"hi anoghi gath",YearRelease:2023,Category:"romantic",actor:"shreyash tadpade",director:"mahesh manjrejkar",place:"thane",rating:5},{id:8,title:"lapata ledies",YearRelease:2024,Category:["romantic", "adventure"],actor:"sayli",director:"prabhudeva",place:"ghatkoper",rating:5},{id:9,title:"hum aapke hai kon?",YearRelease:1995,Category:"romantic",actor:"madhuri dixit",director:"dhrma",place:"pune",rating:5},{id:10,title:"om shanti om",YearRelease:2001,Category:"romantic",actor:"sharuk khan",director:"dhrma",place:"mumbai",rating:5}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a87e2d64746d54c04c0c02"),
+		ObjectId("66a87e2d64746d54c04c0c03"),
+		ObjectId("66a87e2d64746d54c04c0c04"),
+		ObjectId("66a87e2d64746d54c04c0c05"),
+		ObjectId("66a87e2d64746d54c04c0c06"),
+		ObjectId("66a87e2d64746d54c04c0c07")
+	]
+}
+
+db.Film2.find()
+
+{ "_id" : ObjectId("66a87d9f64746d54c04c0bfe"), "id" : 1, "title" : "avengers", "YearRelease" : 2014, "Category" : "action", "actor" : "john mith", "director" : "r.robert", "place" : "paris", "rating" : 5 }
+{ "_id" : ObjectId("66a87d9f64746d54c04c0bff"), "id" : 2, "title" : "titanic", "YearRelease" : 1993, "Category" : "action", "actor" : "m.cock", "director" : "smith.s", "place" : "uk", "rating" : 5 }
+{ "_id" : ObjectId("66a87dd564746d54c04c0c00"), "id" : 3, "title" : "junglebook", "YearRelease" : 2009, "Category" : "action", "actor" : "john dee", "director" : "g.robern", "place" : "mumbai", "rating" : 5 }
+{ "_id" : ObjectId("66a87dd564746d54c04c0c01"), "id" : 4, "title" : "jumanji", "yearRelease" : 2018, "Category" : "sci-fi", "actor" : "michel", "director" : "john.p", "place" : "delhi", "rating" : 5 }
+{ "_id" : ObjectId("66a87e2d64746d54c04c0c02"), "id" : 5, "title" : "war", "YearRelease" : 2020, "Category" : [ "action", "adventure" ], "actor" : "tiger shroff", "director" : "s.swami", "place" : "Mumbai", "rating" : 5 }
+{ "_id" : ObjectId("66a87e2d64746d54c04c0c03"), "id" : 6, "title" : "main tera hero", "YearRelease" : 2012, "Category" : [ "action", "romantic" ], "actor" : "varun dhawan", "director" : "prabhudeva", "place" : "dubai", "rating" : 4 }
+{ "_id" : ObjectId("66a87e2d64746d54c04c0c04"), "id" : 7, "title" : "hi anoghi gath", "YearRelease" : 2023, "Category" : "romantic", "actor" : "shreyash tadpade", "director" : "mahesh manjrejkar", "place" : "thane", "rating" : 5 }
+{ "_id" : ObjectId("66a87e2d64746d54c04c0c05"), "id" : 8, "title" : "lapata ledies", "YearRelease" : 2024, "Category" : [ "romantic", "adventure" ], "actor" : "sayli", "director" : "prabhudeva", "place" : "ghatkoper", "rating" : 5 }
+{ "_id" : ObjectId("66a87e2d64746d54c04c0c06"), "id" : 9, "title" : "hum aapke hai kon?", "YearRelease" : 1995, "Category" : "romantic", "actor" : "madhuri dixit", "director" : "dhrma", "place" : "pune", "rating" : 5 }
+{ "_id" : ObjectId("66a87e2d64746d54c04c0c07"), "id" : 10, "title" : "om shanti om", "YearRelease" : 2001, "Category" : "romantic", "actor" : "sharuk khan", "director" : "dhrma", "place" : "mumbai", "rating" : 5 }
+
+db.createCollection("actor")
+{ "ok" : 1 }
+> db.actor.insertMany([{"actorid":1, "firstname" :"Sharuk", "lastname":"Khan", "address":["mumbai","maharastra","india", 421102], "contact": ["1234567892", "sharuk001@gmail.com"], "age": 67}, {"actorid":2, "firstname" :"Tiger", "lastname":"shrof", "address":["delhi","maharastra","india", 421112], "contact": ["1212467892", "tigersho1@gmail.com"], "age": 57}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a882e46eb432dc08927f53"),
+		ObjectId("66a882e46eb432dc08927f54")
+	]
+}
+> db.actor.insertMany([{"actorid":3, "firstname" :"Kumar", "lastname":"Sanu", "address":["kolkata","maharastra","india", 421105], "contact": ["4564567892", "kumarsanu@gmail.com"], "age": 87}, {"actorid":4, "firstname" :"madhuri", "lastname":"dixt", "address":["Thane","maharastra","india", 421102], "contact": ["1478523698", "madhuridixit@gmail.com"], "age": 56}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a883786eb432dc08927f55"),
+		ObjectId("66a883786eb432dc08927f56")
+	]
+}
+> db.actor.insertMany([{"actorid":5, "firstname" :"Ritesh", "lastname":"deshmukh", "address":["panvel","maharastra","india", 421106], "contact": ["4564567852", "riteshdeshmukh@gmail.com"], "age":37}, {"actorid":6, "firstname" :"Alia", "lastname":"bhat", "address":["Thane","maharastra","india", 421102], "contact": ["14785122698", "aliabhat@gmail.com"], "age": 29}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a884056eb432dc08927f57"),
+		ObjectId("66a884056eb432dc08927f58")
+	]
+}
+> db.actor.insertMany([{"actorid":5, "firstname" :"Ritesh", "lastname":"", "address":["panvel","maharastra","india", 421106], "contact": ["4564567952", "akshaykumar@gmail.com"], "age":42}, {"actorid":7, "firstname" :"Kriti", "lastname":"sanon", "address":["mumbai","maharastra","india", 421101], "contact": ["12785122698", "kritisanon@gmail.com"], "age": 34}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a8848d6eb432dc08927f59"),
+		ObjectId("66a8848d6eb432dc08927f5a")
+	]
+}
+> db.actor.insertMany([{"actorid":7, "firstname" :"Akshay", "lastname":"kumar", "address":["panvel","maharastra","india", 421106], "contact": ["4564567952", "akshaykumar@gmail.com"], "age":42}, {"actorid":8, "firstname" :"Varun", "lastname":"dhawan", "address":["mumbai","maharastra","india", 421101], "contact": ["12785422698", "varundhawan@gmail.com"], "age": 42}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a885756eb432dc08927f5b"),
+		ObjectId("66a885756eb432dc08927f5c")
+	]
+}
+> db.actor.insertMany([{"actorid":9, "firstname" :"Ankush", "lastname": "yadav", "address":["navi mumbai","maharastra","india", 421104], "contact": ["4564567952", "ankushchavhan@gmail.com"], "age":42}, {"actorid":10, "firstname" :"Vicky", "lastname":"Kaushal", "address":["juhu","maharastra","india", 421301], "contact": ["12785423698", "vickykaushal@gmail.com"], "age": 43}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a886d56eb432dc08927f5d"),
+		ObjectId("66a886d56eb432dc08927f5e")
+	]
+}
+
+> db.actor.find()
+{ "_id" : ObjectId("66a882e46eb432dc08927f53"), "actorid" : 1, "firstname" : "Sharuk", "lastname" : "Khan", "address" : [ "mumbai", "maharastra", "india", 421102 ], "contact" : [ "1234567892", "sharuk001@gmail.com" ], "age" : 67 }
+{ "_id" : ObjectId("66a882e46eb432dc08927f54"), "actorid" : 2, "firstname" : "Tiger", "lastname" : "shrof", "address" : [ "delhi", "maharastra", "india", 421112 ], "contact" : [ "1212467892", "tigersho1@gmail.com" ], "age" : 57 }
+{ "_id" : ObjectId("66a883786eb432dc08927f55"), "actorid" : 3, "firstname" : "Kumar", "lastname" : "Sanu", "address" : [ "kolkata", "maharastra", "india", 421105 ], "contact" : [ "4564567892", "kumarsanu@gmail.com" ], "age" : 87 }
+{ "_id" : ObjectId("66a883786eb432dc08927f56"), "actorid" : 4, "firstname" : "madhuri", "lastname" : "dixt", "address" : [ "Thane", "maharastra", "india", 421102 ], "contact" : [ "1478523698", "madhuridixit@gmail.com" ], "age" : 56 }
+{ "_id" : ObjectId("66a884056eb432dc08927f57"), "actorid" : 5, "firstname" : "Ritesh", "lastname" : "deshmukh", "address" : [ "panvel", "maharastra", "india", 421106 ], "contact" : [ "4564567852", "riteshdeshmukh@gmail.com" ], "age" : 37 }
+{ "_id" : ObjectId("66a884056eb432dc08927f58"), "actorid" : 6, "firstname" : "Alia", "lastname" : "bhat", "address" : [ "Thane", "maharastra", "india", 421102 ], "contact" : [ "14785122698", "aliabhat@gmail.com" ], "age" : 29 }
+{ "_id" : ObjectId("66a8848d6eb432dc08927f59"), "actorid" : 5, "firstname" : "Ritesh", "lastname" : "", "address" : [ "panvel", "maharastra", "india", 421106 ], "contact" : [ "4564567952", "akshaykumar@gmail.com" ], "age" : 42 }
+{ "_id" : ObjectId("66a8848d6eb432dc08927f5a"), "actorid" : 7, "firstname" : "Kriti", "lastname" : "sanon", "address" : [ "mumbai", "maharastra", "india", 421101 ], "contact" : [ "12785122698", "kritisanon@gmail.com" ], "age" : 34 }
+{ "_id" : ObjectId("66a885756eb432dc08927f5b"), "actorid" : 7, "firstname" : "Akshay", "lastname" : "kumar", "address" : [ "panvel", "maharastra", "india", 421106 ], "contact" : [ "4564567952", "akshaykumar@gmail.com" ], "age" : 42 }
+{ "_id" : ObjectId("66a885756eb432dc08927f5c"), "actorid" : 8, "firstname" : "Varun", "lastname" : "dhawan", "address" : [ "mumbai", "maharastra", "india", 421101 ], "contact" : [ "12785422698", "varundhawan@gmail.com" ], "age" : 42 }
+{ "_id" : ObjectId("66a886d56eb432dc08927f5d"), "actorid" : 9, "firstname" : "Ankush", "lastname" : "yadav", "address" : [ "navi mumbai", "maharastra", "india", 421104 ], "contact" : [ "4564567952", "ankushchavhan@gmail.com" ], "age" : 42 }
+{ "_id" : ObjectId("66a886d56eb432dc08927f5e"), "actorid" : 10, "firstname" : "Vicky", "lastname" : "Kaushal", "address" : [ "juhu", "maharastra", "india", 421301 ], "contact" : [ "12785423698", "vickykaushal@gmail.com" ], "age" : 43 }
+
+--------------------------------------------------------------------------Queryes----------------------------------------------------------------------
+
+
+>  db.Film2.insertMany([{id:11,title:"mumbai pune munbai",YearRelease:2014, "Category":["adventure" , "romantic"],actor:"swapnil joshi",director:"swapnil.sk",place:"mumbai",rating:5},{id:12,title:"bramastra",YearRelease:2024,Category:"action",actor:"ranbir kapoor",director:"dharma","place":["mumbai", "delhi", "paris"],rating:5}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66a88b346eb432dc08927f5f"),
+		ObjectId("66a88b346eb432dc08927f60")
+	]
+}
+
+> db.Film2.find({title:"titanic"})
+{ "_id" : ObjectId("66a87f156eb432dc08927f52"), "id" : 2, "title" : "titanic", "YearRelease" : 1993, "Category" : "action", "actor" : "m.cock", "director" : "smith.s", "place" : "uk", "rating" : 5 }
+
+> db.Film2.deleteOne({title:"war"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+> db.actor.deleteOne({firstname:"akshay"})
+{ "acknowledged" : true, "deletedCount" : 0 }
+
+> db.actor.find({age:{$gt:50}})
+{ "_id" : ObjectId("66a882e46eb432dc08927f53"), "actorid" : 1, "firstname" : "Sharuk", "lastname" : "Khan", "address" : [ "mumbai", "maharastra", "india", 421102 ], "contact" : [ "1234567892", "sharuk001@gmail.com" ], "age" : 67 }
+{ "_id" : ObjectId("66a882e46eb432dc08927f54"), "actorid" : 2, "firstname" : "Tiger", "lastname" : "shrof", "address" : [ "delhi", "maharastra", "india", 421112 ], "contact" : [ "1212467892", "tigersho1@gmail.com" ], "age" : 57 }
+{ "_id" : ObjectId("66a883786eb432dc08927f55"), "actorid" : 3, "firstname" : "Kumar", "lastname" : "Sanu", "address" : [ "kolkata", "maharastra", "india", 421105 ], "contact" : [ "4564567892", "kumarsanu@gmail.com" ], "age" : 87 }
+{ "_id" : ObjectId("66a883786eb432dc08927f56"), "actorid" : 4, "firstname" : "madhuri", "lastname" : "dixt", "address" : [ "Thane", "maharastra", "india", 421102 ], "contact" : [ "1478523698", "madhuridixit@gmail.com" ], "age" : 56 }
+
+> db.actor.deleteMany({age:{$gt:50}})
+{ "acknowledged" : true, "deletedCount" : 4 }
+
+> db.actor.updateOne({firstname:"Akshay"},{$set:{address:"bihar"}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
